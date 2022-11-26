@@ -18,6 +18,12 @@ for (let i = 0; i < alturas.length; i++) {
   }
 }
 
+for (let i = 0; i < array.length; i++) {
+  if (menorAltura > alturas[i]) {
+    menorAltura = alturas[i];
+  }
+}
+
 for (let i = 0; i < alturas.length; i++) {
   if (menorAltura > alturas[i]) {
     menorAltura = alturas[i];
@@ -42,3 +48,20 @@ alert(`
       A média das alturas é de ${mediaAltura.toFixed(2)}
       A quantidade de pessoas maiores que 1.81 são de ${maior181.length} pessoas
       `);
+
+// ===============================
+
+// for (let i = 0; i < array.alturas; i++) {
+//   const altura = alturas[i];
+
+//   if(altura > maiorAltura){
+//     maiorAltura = altura
+//   }
+
+//   if(menorAltura > altura){
+//     menorAltura = altura
+//   }
+
+//   somaMedia += altura
+
+// }
