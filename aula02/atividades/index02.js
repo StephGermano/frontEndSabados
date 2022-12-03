@@ -3,11 +3,6 @@
 //  depois calcule a soma de  todos os valores dentro do array.
 //   Execute a função mostrando na tela o seguinte
 //   texto: 'A soma dos valores do array é ${(resultado)}'.
-
-function arrayNumeros(array) {
-  return array;
-}
-
 function somaArray(array) {
   let somaValores = 0;
 
