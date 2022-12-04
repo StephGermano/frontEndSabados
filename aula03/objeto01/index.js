@@ -10,196 +10,197 @@
 
 // O cadastro do automóvel deve solicitar modelo do veículo, marca, placa e ano de fabricação.
 
-let baseDeVeiculos = [];
+let carsDatabase = [];
 
-function apresentarMenu() {
-  let valor = prompt(`
-    (1) - Cadastrar automóvel;
-    (2) - Pesquisar automóvel;
-    (3) - Excluir automóvel;
-    (5) - Alterar automóvel
-    (0) - Sair;
+function menu() {
+  let value = prompt(`
+    (1) - Register Car;
+    (2) - Search Car;
+    (3) - Delete Car;
+    (5) - Change Car;
+    (0) - Exit;
     `);
 
-  if (valor == 0) {
+  if (value == 0) {
   }
 
-  if (valor == 1) {
-    cadastrar();
-    apresentarMenu();
+  if (value == 1) {
+    register();
+    menu();
   }
 
-  if (valor == 2) {
-    pesquisar();
-    apresentarMenu();
+  if (value == 2) {
+    search();
+    menu();
   }
 
-  if (valor == 3) {
-    exluir();
-    apresentarMenu();
+  if (value == 3) {
+    deleteCar();
+    menu();
   }
 
-  if (valor == 4) {
+  if (value == 4) {
     alterar();
-    apresentarMenu();
+    menu();
   }
 
-  if (valor == 5) {
+  if (value == 5) {
     alterar();
-    apresentarMenu();
+    menu();
   }
 }
 
 // ⦁ Não se pode cadastrar uma placa previamente cadastrada;
-function cadastrar() {
-  let placa = prompt("placa");
-  let possuiCadastro = false;
-  baseDeVeiculos.forEach((v) => {
-    if (v.placa == placa) {
-      possuiCadastro = true;
+function register() {
+  let licencePlate = prompt("licencePlate");
+  let isRegister = false;
+  carsDatabase.forEach((c) => {
+    if (c.licencePlate == licencePlate) {
+      isRegister = true;
     }
   });
 
-  if (possuiCadastro) {
-    alert(`Placa não pode ser cadastrada`);
+  if (isRegister) {
+    alert(`
+    Plate has registration
+    Cannot be registred    
+    `);
   } else {
-    let marca = prompt("marca");
-    let modelo = prompt("modelo");
-    let ano = prompt("ano");
-    let veiculo = {
-      marca,
-      modelo,
-      placa,
-      ano,
+    let brand = prompt("brand");
+    let model = prompt("model");
+    let year = prompt("year");
+    let car = {
+      brand,
+      model,
+      licencePlate,
+      year,
     };
-    baseDeVeiculos.push(veiculo);
-    alert(`Veiculo cadastrado`);
+    carsDatabase.push(car);
+    alert(`Registred Car`);
   }
 }
 
 // ⦁ A pesquisa deve ser feita pela placa, marca ou modelo e deve listar todos os resultados que correspondem à pesquisa;
-function pesquisar() {
-  let opcaoPesquisa = prompt(`
-    Deseja pesquisar por qual opção?
-    (1) - Placa
-    (2) - Marca
-    (3) - Modelo
-    (4) - Voltar Menu Anterior
+function search() {
+  let searchOption = prompt(`
+    Select one option
+    (1) - License Plate
+    (2) - Brand
+    (3) - Model
+    (4) - Back To Previuous Menu
     `);
-  if (opcaoPesquisa == 1) {
-    placa();
-    pesquisar();
+  if (searchOption == 1) {
+    licencePlate();
+    search();
   }
 
-  if (opcaoPesquisa == 2) {
-    marca();
-    pesquisar();
+  if (searchOption == 2) {
+    brand();
+    search();
   }
 
-  if (opcaoPesquisa == 3) {
-    modelo();
-    pesquisar();
+  if (searchOption == 3) {
+    model();
+    search();
   }
 
-  if (opcaoPesquisa == 4) {
-    apresentarMenu();
+  if (searchOption == 4) {
+    menu();
   }
 
-  function placa() {
-    let pesquisaPlaca = prompt("informe a placa para pesquisa");
-    let veiculoPesquisaPlaca = baseDeVeiculos.find(
-      (veiculoPesquisaPlaca) => veiculoPesquisaPlaca.placa === pesquisaPlaca
+  function licencePlate() {
+    let findPlate = prompt("Inform plate for research");
+    let carFindPlate = carsDatabase.find(
+      (carFindPlate) => carFindPlate.licencePlate === findPlate
     );
 
-    if (veiculoPesquisaPlaca) {
+    if (carFindPlate) {
       return alert(`
-            Marca: ${veiculoPesquisaPlaca.marca}
-            Modelo: ${veiculoPesquisaPlaca.modelo}
-            Placa: ${veiculoPesquisaPlaca.placa}
-            Ano: ${veiculoPesquisaPlaca.ano}
+            Brand: ${carFindPlate.brand}
+            Model: ${carFindPlate.model}
+            Licence Plate: ${carFindPlate.licencePlate}
+            Year: ${carFindPlate.year}
             `);
     } else {
-      return alert(`Não existe veiculo com essa placa`);
+      return alert(`No regitred car with this licence plate`);
     }
   }
 
-  function marca() {
-    let pesquisaMarca = prompt("informe a marca para pesquisa");
+  function brand() {
+    let findBrand = prompt("Inform brand for research");
 
-    let veiculosMarca = [];
-    baseDeVeiculos.forEach((vMarca) => {
-      if (vMarca.marca == pesquisaMarca) {
-        veiculosMarca.push(vMarca);
+    let carsBrand = [];
+    carsDatabase.forEach((cBrand) => {
+      if (cBrand.brand == findBrand) {
+        carsBrand.push(cBrand);
       }
     });
 
-    if (veiculosMarca.length > 0) {
-      for (let i = 0; i < veiculosMarca.length; i++) {
-        const resultMarca = veiculosMarca[i];
+    if (carsBrand.length > 0) {
+      for (let i = 0; i < carsBrand.length; i++) {
+        const searchResultBrand = carsBrand[i];
         alert(`
-                Marca: ${resultMarca.marca}
-                Modelo: ${resultMarca.modelo}
-                Placa: ${resultMarca.placa}
-                Ano: ${resultMarca.ano}
+                Brand: ${searchResultBrand.brand}
+                Model: ${searchResultBrand.model}
+                Licence Plate: ${searchResultBrand.licencePlate}
+                Year: ${searchResultBrand.year}
                 `);
       }
     } else {
-      alert(`Não consta nenhum veiculo dessa marca na base de dados`);
+      alert(`No registred car with this brand`);
     }
     return;
   }
 
-  function modelo() {
-    let pesquisaModelo = prompt("informe a modelo para pesquisa");
+  function model() {
+    let searchModel = prompt("Inform model for research");
 
-    let veiculosModelo = [];
-    baseDeVeiculos.forEach((vModelo) => {
-      if (vModelo.modelo == pesquisaModelo) {
-        veiculosModelo.push(vModelo);
+    let carsModel = [];
+    carsDatabase.forEach((cModel) => {
+      if (cModel.model == searchModel) {
+        carsModel.push(cModel);
       }
     });
 
-    if (veiculosModelo.length > 0) {
-      for (let i = 0; i < veiculosModelo.length; i++) {
-        const resultModelo = veiculosModelo[i];
+    if (carsModel.length > 0) {
+      for (let i = 0; i < carsModel.length; i++) {
+        const resultModel = carsModel[i];
         alert(`
-                Marca: ${resultModelo.marca}
-                Modelo: ${resultModelo.modelo}
-                Placa: ${resultModelo.placa}
-                Ano: ${resultModelo.ano}
+                Brand: ${resultModel.brand}
+                Model: ${resultModel.model}
+                Licence Plate: ${resultModel.licencePlate}
+                Year: ${resultModel.year}
                 `);
       }
     } else {
-      alert(`Não consta nenhum veiculo dessa marca na base de dados`);
+      alert(`No registred car with this model`);
     }
     return;
   }
 }
 
-apresentarMenu();
-
 // ⦁ A exclusão deve ser feita pela placa do veículo;
-function exluir() {
-  placaRemocao = prompt(`Digite a placa do veiculo que deseja excluir`);
-  let veiculoExiste = false;
-  baseDeVeiculos.forEach((vei) => {
-    if (vei.placa == placaRemocao) {
-      veiculoExiste = true;
+function deleteCar() {
+  licencePlateToRemove = prompt(`Inform plate to delete`);
+  let carExist = false;
+  carsDatabase.forEach((carDelete) => {
+    if (carDelete.licencePlate == licencePlateToRemove) {
+      carExist = true;
     }
   });
 
-  if (veiculoExiste) {
-    for (let i = 0; i < baseDeVeiculos.length; i++) {
-      const veiculo = baseDeVeiculos[i];
+  if (carExist) {
+    for (let i = 0; i < carsDatabase.length; i++) {
+      const car = carsDatabase[i];
 
-      if (placaRemocao == veiculo.placa) {
-        baseDeVeiculos.splice(i, 1);
-        alert(`Veiculo Removido`);
+      if (licencePlateToRemove == car.licencePlate) {
+        carsDatabase.splice(i, 1);
+        alert(`Car removed`);
         break;
       }
     }
   } else {
-    alert(`Não existe véiculo com essa placa cadastrada`);
+    alert(`Don't exist car with this plate`);
   }
 }
 
@@ -208,3 +209,4 @@ function alterar() {}
 
 // removendoArray
 // array.splice(0,1) -> ("0") Posição para remoção // ("1") quantidade de remoção
+menu();
