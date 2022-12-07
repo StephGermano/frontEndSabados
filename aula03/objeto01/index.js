@@ -45,7 +45,7 @@ function menu() {
   }
 
   if (value == 5) {
-    alterar();
+    change();
     menu();
   }
 }
@@ -205,8 +205,46 @@ function deleteCar() {
 }
 
 // ⦁ O usuário deve pesquisar um veículo pela placa para alterar o cadastro e só deve permitir alterar o modelo e marca;
-function alterar() {}
+function change() {
+  let findPlate = prompt("informe a placa do carro que deseja fazer alteração");
+  let carChangeExist = false;
+  carsDatabase.forEach((carChange) => {
+    if (carChange.licencePlate == findPlate) {
+      carChangeExist = true;
+    }
+  });
+
+  if (carChangeExist) {
+    for (let i = 0; i < carsDatabase.length; i++) {
+      const carChange = carsDatabase[i];
+
+      if (carChange.licencePlate == findPlate) {
+        let newBrande = prompt("What is the new model?");
+        let newModel = prompt("Whats the new brande?");
+        let newCar = {
+          brand: newBrande,
+          model: newModel,
+          licencePlate: carChange.licencePlate,
+          year: carChange.year,
+        };
+        carsDatabase.splice(i, 1, newCar);
+        alert(`
+        Car change.
+        Brand: ${carsDatabase[i].brand}
+        Model: ${carsDatabase[i].model}
+        Licence Plate: ${carsDatabase[i].licencePlate}
+        Year: ${carsDatabase[i].year}
+        `);
+        break;
+      } else {
+        alert(`Don't exist car with this plate`);
+      }
+    }
+  }
+}
 
 // removendoArray
 // array.splice(0,1) -> ("0") Posição para remoção // ("1") quantidade de remoção
+// uma forma de trocar o objeto é usando o .splice onde (0,1,novoObjeto) => novoObjeto é novo objeto adicionado
+
 menu();
