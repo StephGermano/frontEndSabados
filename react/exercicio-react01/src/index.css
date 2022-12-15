@@ -1,0 +1,32 @@
+.linha{
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  background-color:#9C9FAC ;
+  align-items: center;
+  color: #ffffff;
+  
+}
+
+.m5{
+  margin-bottom: 5px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.m5 > input[type=text]:focus{
+  border: 3px solid #000000;
+}
+
+.column{
+  width: 50%;
+  height: 50%;
+}
+
+table, th, td{
+  border: 1px solid;
+}
