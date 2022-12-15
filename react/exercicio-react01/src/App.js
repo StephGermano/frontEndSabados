@@ -289,25 +289,29 @@ function App() {
           </div>
         </div>
       </div>
-
-      <div>
-        <table>
-          <tr>
-            <th>Placa</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Ano</th>
-          </tr>
-          {carsDatabase.map((car) => {
-            return (
-              <tr>
-                <td>{car.licensePlate}</td>
-                <td>{car.brand}</td>
-                <td>{car.model}</td>
-                <td>{car.year}</td>
-              </tr>
-            );
-          })}
+      <br />
+      <div className="table-structure">
+        <table className="styled-table">
+          <thead>
+            <tr>
+              <th>Placa</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Ano</th>
+            </tr>
+          </thead>
+          <tbody>
+            {carsDatabase.map((car) => {
+              return (
+                <tr>
+                  <td>{car.licensePlate}</td>
+                  <td>{car.brand}</td>
+                  <td>{car.model}</td>
+                  <td>{car.year}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </>
