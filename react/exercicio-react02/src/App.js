@@ -9,6 +9,7 @@ import {
   Container,
   Table,
   Accordion,
+  ProgressBar,
 } from "react-bootstrap";
 import { BsFillChatLeftTextFill, BsFillPencilFill } from "react-icons/bs";
 import Calendar from "react-calendar";
@@ -84,7 +85,7 @@ function App() {
 
   function changePages(title) {
     bookDatabase.forEach((livro) => {
-      if ((livro.title = title)) {
+      if (livro.title == title) {
         let newPages = prompt(`Qual o novo valor?`);
         livro.pagesRead = newPages;
         setBookDatabase([...bookDatabase]);
@@ -154,6 +155,9 @@ function App() {
               value={date}
               onChange={setDate}
             />
+            <p className="text-center">
+              <span className="bold">Selected Date:</span> {date.toDateString()}
+            </p>
           </div>
           <Button onClick={create}>Salvar</Button>
         </div>
@@ -196,7 +200,7 @@ function App() {
                             />
                           </td>
                           <td>
-                            {book.pagesRead}{" "}
+                            {book.pagesRead}
                             <BsFillPencilFill
                               onClick={() => {
                                 changePages(book.title);
@@ -204,7 +208,12 @@ function App() {
                             />
                           </td>
                           <td>{book.pages}</td>
-                          <td>{(book.pagesRead / book.pages) * 100}</td>
+                          <td>
+                            <ProgressBar
+                              now={(book.pagesRead / book.pages) * 100}
+                              label={`${(book.pagesRead / book.pages) * 100}%`}
+                            />
+                          </td>
                           <td>
                             <CloseButton
                               onClick={() => {
