@@ -1,0 +1,13 @@
+*{
+  background-color: #f0ffff;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.align{
+  text-align: center;
+}
